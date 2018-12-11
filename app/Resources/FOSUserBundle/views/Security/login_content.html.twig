@@ -13,7 +13,7 @@
               {% endif %}
               <form action="{{ path("fos_user_security_check") }}" method="POST">
               <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />              
-              <h1>Login Form</h1>
+              <h1>Inicio de Sesion</h1>
               <div>
                 <input type="text" class="form-control" placeholder="{{ 'security.login.username'|trans }}" id="username" name="_username" value="{{ last_username }}" required="required" />
               </div>
@@ -36,7 +36,6 @@
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> Gentelella</h1>
                   <p>©2016 All Rights Reserved.
                     <a href="">Privacy and Terms</a>
                   </p> 
@@ -75,7 +74,7 @@
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> Gentelella</h1>
+
                   <p>©2016 All Rights Reserved. <a href="">Privacy and Terms</a></p>
                 </div>
               </div>

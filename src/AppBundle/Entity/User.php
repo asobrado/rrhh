@@ -12,7 +12,14 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="app_user")
+ * @ORM\Table(name="usuarios")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"user" = "User", "empleado" = "Empleado"})
+ * @UniqueEntity(fields="email",
+ *      errorPath="email",
+ *      message="El email ya existe"
+ * )
  */
 class User extends BaseUser
 {
