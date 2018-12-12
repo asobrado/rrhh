@@ -1,16 +1,17 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Institucion creation</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('institucion_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{% extends ':app:new.html.twig' %}
+{% block page_breadcrumb %}
+    {{ parent() }}
+    <li>
+        <a href="{{ path('institucion_index') }}">Insituciones</a>
+        <i class="fa fa-angle-right"></i>
+    </li>
+    <li>
+        Nueva
+    </li>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% include ':app:document_collection_handler.js.twig' %}
+{% endblock %}
+

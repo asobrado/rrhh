@@ -148,4 +148,8 @@ class Institucion
     {
         return $this->depedencias;
     }
+    public function __toString()
+    {
+        return $this->getNombre();
+    }
 }

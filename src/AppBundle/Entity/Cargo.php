@@ -111,4 +111,9 @@ class Cargo
     {
         return $this->cargos;
     }
+
+    public function __toString()
+    {
+      return $this->getNombre();
+    }
 }

@@ -27,7 +27,7 @@ class InstitucionController extends Controller
         $institucions = $em->getRepository('AppBundle:Institucion')->findAll();
 
         return $this->render('institucion/index.html.twig', array(
-            'institucions' => $institucions,
+            'entities' => $institucions,
         ));
     }
 
@@ -92,7 +92,7 @@ class InstitucionController extends Controller
         }
 
         return $this->render('institucion/edit.html.twig', array(
-            'institucion' => $institucion,
+            'entity' => $institucion,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

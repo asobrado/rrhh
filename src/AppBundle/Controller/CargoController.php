@@ -92,7 +92,7 @@ class CargoController extends Controller
         }
 
         return $this->render('cargo/edit.html.twig', array(
-            'cargo' => $cargo,
+            'entity' => $cargo,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
