@@ -28,7 +28,11 @@ class TipoArchivoDocumento
      */
     private $nombre;
 
-
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Archivo", mappedBy="tipoArchivoDocument")
+     */
+    private $archivos;
     
     /**
      * Get id
@@ -65,4 +69,45 @@ class TipoArchivoDocumento
     }
 
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->archivos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add archivo
+     *
+     * @param \AppBundle\Entity\Archivo $archivo
+     *
+     * @return TipoArchivoDocumento
+     */
+    public function addArchivo(\AppBundle\Entity\Archivo $archivo)
+    {
+        $this->archivos[] = $archivo;
+
+        return $this;
+    }
+
+    /**
+     * Remove archivo
+     *
+     * @param \AppBundle\Entity\Archivo $archivo
+     */
+    public function removeArchivo(\AppBundle\Entity\Archivo $archivo)
+    {
+        $this->archivos->removeElement($archivo);
+    }
+
+    /**
+     * Get archivos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArchivos()
+    {
+        return $this->archivos;
+    }
 }

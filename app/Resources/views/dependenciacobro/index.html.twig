@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Dependenciacobros list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dependenciaCobro in dependenciaCobros %}
+            <tr>
+                <td><a href="{{ path('dependenciacobro_show', { 'id': dependenciaCobro.id }) }}">{{ dependenciaCobro.id }}</a></td>
+                <td>{{ dependenciaCobro.nombre }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('dependenciacobro_show', { 'id': dependenciaCobro.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('dependenciacobro_edit', { 'id': dependenciaCobro.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('dependenciacobro_new') }}">Create a new dependenciaCobro</a>
+        </li>
+    </ul>
+{% endblock %}

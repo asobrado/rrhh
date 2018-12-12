@@ -29,7 +29,19 @@ class DependenciaCobro
     private $nombre;
 
 
-    
+    /**
+     * Many Groups have Many Users.
+     * @ORM\ManyToMany(targetEntity="Empleado", mappedBy="dependencias")
+     */
+    private $empleados;
+
+    /**
+     * @var Cargo
+     * @ORM\ManyToOne(targetEntity="Institucion", inversedBy="dependencias")
+     * @ORM\JoinColumn(name="institucion_id", nullable=true)
+     */
+    private $institucion;
+
     /**
      * Get id
      *
@@ -65,4 +77,69 @@ class DependenciaCobro
     }
 
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->empleados = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add empleado
+     *
+     * @param \AppBundle\Entity\Empleado $empleado
+     *
+     * @return DependenciaCobro
+     */
+    public function addEmpleado(\AppBundle\Entity\Empleado $empleado)
+    {
+        $this->empleados[] = $empleado;
+
+        return $this;
+    }
+
+    /**
+     * Remove empleado
+     *
+     * @param \AppBundle\Entity\Empleado $empleado
+     */
+    public function removeEmpleado(\AppBundle\Entity\Empleado $empleado)
+    {
+        $this->empleados->removeElement($empleado);
+    }
+
+    /**
+     * Get empleados
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEmpleados()
+    {
+        return $this->empleados;
+    }
+
+    /**
+     * Set institucion
+     *
+     * @param \AppBundle\Entity\Institucion $institucion
+     *
+     * @return DependenciaCobro
+     */
+    public function setInstitucion(\AppBundle\Entity\Institucion $institucion = null)
+    {
+        $this->institucion = $institucion;
+
+        return $this;
+    }
+
+    /**
+     * Get institucion
+     *
+     * @return \AppBundle\Entity\Institucion
+     */
+    public function getInstitucion()
+    {
+        return $this->institucion;
+    }
 }

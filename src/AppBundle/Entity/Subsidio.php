@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Provincia
  *
- * @ORM\Table(name="cargos")
+ * @ORM\Table(name="subsidios")
  * @ORM\Entity()
  */
-class Cargo
+class Subsidio
 {
     /**
      * @var int
@@ -27,14 +27,20 @@ class Cargo
      * @ORM\Column(name="nombre", type="string", length=100)
      */
     private $nombre;
-
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Empleado", mappedBy="cargo")
+     * @ORM\OneToMany(targetEntity="Movimiento", mappedBy="subsidio")
      */
-    private $cargos;
+    private $movimientos;
 
-    
+    /**
+     * @var Cargo
+     * @ORM\ManyToOne(targetEntity="Institucion", inversedBy="subdisios")
+     * @ORM\JoinColumn(name="institucion_id", nullable=true)
+     */
+    private $institucion;
+
+
     /**
      * Get id
      *
@@ -75,40 +81,40 @@ class Cargo
      */
     public function __construct()
     {
-        $this->cargos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->movimientos = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add cargo
+     * Add movimiento
      *
-     * @param \AppBundle\Entity\Empleado $cargo
+     * @param \AppBundle\Entity\Movimiento $movimiento
      *
-     * @return Cargo
+     * @return Subsidio
      */
-    public function addCargo(\AppBundle\Entity\Empleado $cargo)
+    public function addMovimiento(\AppBundle\Entity\Movimiento $movimiento)
     {
-        $this->cargos[] = $cargo;
+        $this->movimientos[] = $movimiento;
 
         return $this;
     }
 
     /**
-     * Remove cargo
+     * Remove movimiento
      *
-     * @param \AppBundle\Entity\Empleado $cargo
+     * @param \AppBundle\Entity\Movimiento $movimiento
      */
-    public function removeCargo(\AppBundle\Entity\Empleado $cargo)
+    public function removeMovimiento(\AppBundle\Entity\Movimiento $movimiento)
     {
-        $this->cargos->removeElement($cargo);
+        $this->movimientos->removeElement($movimiento);
     }
 
     /**
-     * Get cargos
+     * Get movimientos
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCargos()
+    public function getMovimientos()
     {
-        return $this->cargos;
+        return $this->movimientos;
     }
 }

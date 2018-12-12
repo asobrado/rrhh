@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Provincia
  *
- * @ORM\Table(name="cargos")
+ * @ORM\Table(name="movimientos")
  * @ORM\Entity()
  */
-class Cargo
+class Movimiento
 {
     /**
      * @var int
@@ -29,11 +29,11 @@ class Cargo
     private $nombre;
 
     /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Empleado", mappedBy="cargo")
+     * @var Cargo
+     * @ORM\ManyToOne(targetEntity="subsidio", inversedBy="movimientos")
+     * @ORM\JoinColumn(name="subsidio_id", nullable=true)
      */
-    private $cargos;
-
+    private $subsidio;
     
     /**
      * Get id
@@ -70,45 +70,28 @@ class Cargo
     }
 
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->cargos = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
-     * Add cargo
+     * Set subsidio
      *
-     * @param \AppBundle\Entity\Empleado $cargo
+     * @param \AppBundle\Entity\subsidio $subsidio
      *
-     * @return Cargo
+     * @return Movimiento
      */
-    public function addCargo(\AppBundle\Entity\Empleado $cargo)
+    public function setSubsidio(\AppBundle\Entity\subsidio $subsidio = null)
     {
-        $this->cargos[] = $cargo;
+        $this->subsidio = $subsidio;
 
         return $this;
     }
 
     /**
-     * Remove cargo
+     * Get subsidio
      *
-     * @param \AppBundle\Entity\Empleado $cargo
+     * @return \AppBundle\Entity\subsidio
      */
-    public function removeCargo(\AppBundle\Entity\Empleado $cargo)
+    public function getSubsidio()
     {
-        $this->cargos->removeElement($cargo);
-    }
-
-    /**
-     * Get cargos
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCargos()
-    {
-        return $this->cargos;
+        return $this->subsidio;
     }
 }

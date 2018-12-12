@@ -70,45 +70,4 @@ class Cargo
     }
 
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->cargos = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add cargo
-     *
-     * @param \AppBundle\Entity\Empleado $cargo
-     *
-     * @return Cargo
-     */
-    public function addCargo(\AppBundle\Entity\Empleado $cargo)
-    {
-        $this->cargos[] = $cargo;
-
-        return $this;
-    }
-
-    /**
-     * Remove cargo
-     *
-     * @param \AppBundle\Entity\Empleado $cargo
-     */
-    public function removeCargo(\AppBundle\Entity\Empleado $cargo)
-    {
-        $this->cargos->removeElement($cargo);
-    }
-
-    /**
-     * Get cargos
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCargos()
-    {
-        return $this->cargos;
-    }
 }

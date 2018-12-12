@@ -114,38 +114,4 @@ class Institucion
     {
         return $this->subsidios;
     }
-
-    /**
-     * Add depedencia
-     *
-     * @param \AppBundle\Entity\DependenciaCobro $depedencia
-     *
-     * @return Institucion
-     */
-    public function addDepedencia(\AppBundle\Entity\DependenciaCobro $depedencia)
-    {
-        $this->depedencias[] = $depedencia;
-
-        return $this;
-    }
-
-    /**
-     * Remove depedencia
-     *
-     * @param \AppBundle\Entity\DependenciaCobro $depedencia
-     */
-    public function removeDepedencia(\AppBundle\Entity\DependenciaCobro $depedencia)
-    {
-        $this->depedencias->removeElement($depedencia);
-    }
-
-    /**
-     * Get depedencias
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDepedencias()
-    {
-        return $this->depedencias;
-    }
 }

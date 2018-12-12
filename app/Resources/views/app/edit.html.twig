@@ -1,0 +1,33 @@
+{% extends ':app:base.html.twig' %}
+{% form_theme edit_form ':app:forms.html.twig' %}
+{% from ':app:form_actions.html.twig' import update %}
+
+{% block page_title %}
+    <strong>Editar</strong> {{ entity }}
+{% endblock %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Configuración <small>{{ entity_name }}s</small></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    {{ form_start(edit_form, {'attr': {'class': 'form-horizontal form-label-left'}}) }}
+                    {{ form_errors(edit_form) }}
+                    {% block form %}
+                        {{ form_widget(edit_form) }}
+                    {% endblock %}
+                    {{ form_rest(edit_form) }}
+                    {{ update() }}
+                    {{ form_end(edit_form) }}
+
+                </div>
+            </div>
+        </div>
+        <div class="cl-lg-4">
+        </div>
+    </div>
+{% endblock %}

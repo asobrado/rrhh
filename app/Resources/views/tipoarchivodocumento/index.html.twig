@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tipoarchivodocumentos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tipoArchivoDocumento in tipoArchivoDocumentos %}
+            <tr>
+                <td><a href="{{ path('tipoarchivodocumento_show', { 'id': tipoArchivoDocumento.id }) }}">{{ tipoArchivoDocumento.id }}</a></td>
+                <td>{{ tipoArchivoDocumento.nombre }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('tipoarchivodocumento_show', { 'id': tipoArchivoDocumento.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('tipoarchivodocumento_edit', { 'id': tipoArchivoDocumento.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tipoarchivodocumento_new') }}">Create a new tipoArchivoDocumento</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Provincia
  *
- * @ORM\Table(name="cargos")
+ * @ORM\Table(name="dependencia_cobro")
  * @ORM\Entity()
  */
-class Cargo
+class DependenciaCobro
 {
     /**
      * @var int
@@ -28,13 +28,20 @@ class Cargo
      */
     private $nombre;
 
-    /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Empleado", mappedBy="cargo")
-     */
-    private $cargos;
 
-    
+    /**
+     * Many Groups have Many Users.
+     * @ORM\ManyToMany(targetEntity="Empleado", mappedBy="dependencias")
+     */
+    private $empleados;
+
+    /**
+     * @var Cargo
+     * @ORM\ManyToOne(targetEntity="Institucion", inversedBy="dependencias")
+     * @ORM\JoinColumn(name="institucion_id", nullable=true)
+     */
+    private $institucion;
+
     /**
      * Get id
      *
@@ -75,40 +82,40 @@ class Cargo
      */
     public function __construct()
     {
-        $this->cargos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->empleados = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add cargo
+     * Add empleado
      *
-     * @param \AppBundle\Entity\Empleado $cargo
+     * @param \AppBundle\Entity\Empleado $empleado
      *
-     * @return Cargo
+     * @return DependenciaCobro
      */
-    public function addCargo(\AppBundle\Entity\Empleado $cargo)
+    public function addEmpleado(\AppBundle\Entity\Empleado $empleado)
     {
-        $this->cargos[] = $cargo;
+        $this->empleados[] = $empleado;
 
         return $this;
     }
 
     /**
-     * Remove cargo
+     * Remove empleado
      *
-     * @param \AppBundle\Entity\Empleado $cargo
+     * @param \AppBundle\Entity\Empleado $empleado
      */
-    public function removeCargo(\AppBundle\Entity\Empleado $cargo)
+    public function removeEmpleado(\AppBundle\Entity\Empleado $empleado)
     {
-        $this->cargos->removeElement($cargo);
+        $this->empleados->removeElement($empleado);
     }
 
     /**
-     * Get cargos
+     * Get empleados
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCargos()
+    public function getEmpleados()
     {
-        return $this->cargos;
+        return $this->empleados;
     }
 }

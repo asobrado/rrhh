@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Provincia
  *
- * @ORM\Table(name="cargos")
+ * @ORM\Table(name="tipo_archivo_documento")
  * @ORM\Entity()
  */
-class Cargo
+class TipoArchivoDocumento
 {
     /**
      * @var int
@@ -30,10 +30,9 @@ class Cargo
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Empleado", mappedBy="cargo")
+     * @ORM\OneToMany(targetEntity="Archivo", mappedBy="tipoArchivoDocument")
      */
-    private $cargos;
-
+    private $archivos;
     
     /**
      * Get id
@@ -70,45 +69,4 @@ class Cargo
     }
 
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->cargos = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add cargo
-     *
-     * @param \AppBundle\Entity\Empleado $cargo
-     *
-     * @return Cargo
-     */
-    public function addCargo(\AppBundle\Entity\Empleado $cargo)
-    {
-        $this->cargos[] = $cargo;
-
-        return $this;
-    }
-
-    /**
-     * Remove cargo
-     *
-     * @param \AppBundle\Entity\Empleado $cargo
-     */
-    public function removeCargo(\AppBundle\Entity\Empleado $cargo)
-    {
-        $this->cargos->removeElement($cargo);
-    }
-
-    /**
-     * Get cargos
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCargos()
-    {
-        return $this->cargos;
-    }
 }

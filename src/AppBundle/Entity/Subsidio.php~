@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Provincia
  *
- * @ORM\Table(name="cargos")
+ * @ORM\Table(name="subsidios")
  * @ORM\Entity()
  */
-class Cargo
+class Subsidio
 {
     /**
      * @var int
@@ -27,12 +27,11 @@ class Cargo
      * @ORM\Column(name="nombre", type="string", length=100)
      */
     private $nombre;
-
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Empleado", mappedBy="cargo")
+     * @ORM\OneToMany(targetEntity="Movimiento", mappedBy="subsidio")
      */
-    private $cargos;
+    private $movimientos;
 
     
     /**
@@ -70,45 +69,4 @@ class Cargo
     }
 
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->cargos = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add cargo
-     *
-     * @param \AppBundle\Entity\Empleado $cargo
-     *
-     * @return Cargo
-     */
-    public function addCargo(\AppBundle\Entity\Empleado $cargo)
-    {
-        $this->cargos[] = $cargo;
-
-        return $this;
-    }
-
-    /**
-     * Remove cargo
-     *
-     * @param \AppBundle\Entity\Empleado $cargo
-     */
-    public function removeCargo(\AppBundle\Entity\Empleado $cargo)
-    {
-        $this->cargos->removeElement($cargo);
-    }
-
-    /**
-     * Get cargos
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCargos()
-    {
-        return $this->cargos;
-    }
 }

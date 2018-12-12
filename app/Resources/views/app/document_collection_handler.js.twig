@@ -1,0 +1,41 @@
+{% autoescape false %}
+<script type="text/javascript">
+    var $collectionHolder;
+
+    // setup an "add a tag" link
+    var $addTagLink = $('<div class="col-md-12"><a href="#" class="add_tag_link btn btn-info"><i class="fa fa-plus"></i> Agregar Nuevo</a></div>');
+    //        var $newLinkLi = $('form div.form-group:last-child').last().prepend($addTagLink);
+
+    $(document).ready(function() {
+
+        $('.coleccion_archivos').after($addTagLink);
+        $('.coleccion_archivos > .form-group').each(function() {
+            $(this).append($('<div class="col-md-12"><a href="#" class="remove_file btn btn-danger"><i class="fa fa-times"></i> Eliminar Archivo</a></div>'));
+        });
+
+        $('.add_tag_link').on('click', function(e) {
+            e.preventDefault();
+            var formModel = $(this).parent().siblings('.coleccion_archivos');
+            addTagForm(formModel);
+        });
+
+        $('.coleccion_archivos').on('click', '.remove_file', function(e){
+            e.preventDefault();
+            $(this).closest('.form-group').remove();
+        })
+    });
+
+    function addTagForm(elem) {
+        // Get the data-prototype explained earlier
+        var prototype = elem.data('prototype');
+        // get the new index
+        var index = elem.find('.form-group').length;
+
+        // Replace '__name__' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        var newForm = $(prototype.replace(/__name__/g, index));
+        newForm.append($('<div class="col-md-12"><a href="#" class="remove_file btn btn-danger"><i class="fa fa-times"></i> Eliminar Archivo</a></div>'));
+        $(elem).append(newForm);
+    }
+</script>
+{% endautoescape %}
