@@ -13,7 +13,15 @@ class SubsidioType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nombre')->add('institucion');
+        $builder
+            ->add('institucion')
+            ->add('empleado')
+            ->add('nombre')
+            ->add('monto')
+            ->add('fechaInicio')
+            ->add('fechaFin')
+
+        ;
     }/**
      * {@inheritdoc}
      */

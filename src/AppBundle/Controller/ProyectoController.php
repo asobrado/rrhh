@@ -27,7 +27,7 @@ class ProyectoController extends Controller
         $proyectos = $em->getRepository('AppBundle:Proyecto')->findAll();
 
         return $this->render('proyecto/index.html.twig', array(
-            'proyectos' => $proyectos,
+            'entities' => $proyectos,
         ));
     }
 
@@ -92,7 +92,7 @@ class ProyectoController extends Controller
         }
 
         return $this->render('proyecto/edit.html.twig', array(
-            'proyecto' => $proyecto,
+            'entity' => $proyecto,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

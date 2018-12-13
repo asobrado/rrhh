@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+
 /**
  * Provincia
  *
@@ -22,11 +24,13 @@ class Movimiento
     private $id;
 
     /**
-     * @var string
+     * @var decimal $monto
      *
-     * @ORM\Column(name="nombre", type="string", length=100)
+     * @ORM\Column(name="monto", type="decimal", scale=2, precision=15, nullable=false)
      */
-    private $nombre;
+    private $monto;
+
+
 
     /**
      * @var Cargo
@@ -34,7 +38,25 @@ class Movimiento
      * @ORM\JoinColumn(name="subsidio_id", nullable=true)
      */
     private $subsidio;
-    
+
+
+    /**
+     * @var \DateTime $createdAt
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime $updatedAt
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
+
+
     /**
      * Get id
      *
@@ -45,29 +67,6 @@ class Movimiento
         return $this->id;
     }
 
-    /**
-     * Set nombre
-     *
-     * @param string $nombre
-     *
-     * @return Provincia
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
-
-    /**
-     * Get nombre
-     *
-     * @return string
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
 
 
 

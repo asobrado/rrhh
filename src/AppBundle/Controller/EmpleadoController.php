@@ -27,7 +27,7 @@ class EmpleadoController extends Controller
         $empleados = $em->getRepository('AppBundle:Empleado')->findAll();
 
         return $this->render('empleado/index.html.twig', array(
-            'empleados' => $empleados,
+            'entities' => $empleados,
         ));
     }
 
@@ -92,7 +92,7 @@ class EmpleadoController extends Controller
         }
 
         return $this->render('empleado/edit.html.twig', array(
-            'empleado' => $empleado,
+            'entity' => $empleado,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

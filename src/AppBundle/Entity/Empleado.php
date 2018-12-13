@@ -28,6 +28,13 @@ class Empleado extends User
     private $apellido;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=30, nullable=true)
+     */
+    private $nombre;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="fechaNacimiento", type="string", length=10, nullable=true)
@@ -76,6 +83,12 @@ class Empleado extends User
      * @ORM\OneToMany(targetEntity="Archivo", mappedBy="empleado")
      */
     private $archivos;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Subsidio", mappedBy="empleado")
+     */
+    private $subsidios;
 
     public function __construct()
     {
@@ -271,5 +284,107 @@ class Empleado extends User
     public function getArchivos()
     {
         return $this->archivos;
+    }
+
+    /**
+     * Add dependencia
+     *
+     * @param \AppBundle\Entity\DependenciaCobro $dependencia
+     *
+     * @return Empleado
+     */
+    public function addDependencia(\AppBundle\Entity\DependenciaCobro $dependencia)
+    {
+        $this->dependencias[] = $dependencia;
+
+        return $this;
+    }
+
+    /**
+     * Remove dependencia
+     *
+     * @param \AppBundle\Entity\DependenciaCobro $dependencia
+     */
+    public function removeDependencia(\AppBundle\Entity\DependenciaCobro $dependencia)
+    {
+        $this->dependencias->removeElement($dependencia);
+    }
+
+    /**
+     * Get dependencias
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDependencias()
+    {
+        return $this->dependencias;
+    }
+
+    /**
+     * Add proyecto
+     *
+     * @param \AppBundle\Entity\Proyecto $proyecto
+     *
+     * @return Empleado
+     */
+    public function addProyecto(\AppBundle\Entity\Proyecto $proyecto)
+    {
+        $this->proyectos[] = $proyecto;
+
+        return $this;
+    }
+
+    /**
+     * Remove proyecto
+     *
+     * @param \AppBundle\Entity\Proyecto $proyecto
+     */
+    public function removeProyecto(\AppBundle\Entity\Proyecto $proyecto)
+    {
+        $this->proyectos->removeElement($proyecto);
+    }
+
+    /**
+     * Get proyectos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProyectos()
+    {
+        return $this->proyectos;
+    }
+
+    /**
+     * Add subsidio
+     *
+     * @param \AppBundle\Entity\Subsidio $subsidio
+     *
+     * @return Empleado
+     */
+    public function addSubsidio(\AppBundle\Entity\Subsidio $subsidio)
+    {
+        $this->subsidios[] = $subsidio;
+
+        return $this;
+    }
+
+    /**
+     * Remove subsidio
+     *
+     * @param \AppBundle\Entity\Subsidio $subsidio
+     */
+    public function removeSubsidio(\AppBundle\Entity\Subsidio $subsidio)
+    {
+        $this->subsidios->removeElement($subsidio);
+    }
+
+    /**
+     * Get subsidios
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSubsidios()
+    {
+        return $this->subsidios;
     }
 }

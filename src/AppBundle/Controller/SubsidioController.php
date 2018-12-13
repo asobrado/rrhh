@@ -27,7 +27,7 @@ class SubsidioController extends Controller
         $subsidios = $em->getRepository('AppBundle:Subsidio')->findAll();
 
         return $this->render('subsidio/index.html.twig', array(
-            'subsidios' => $subsidios,
+            'entities' => $subsidios,
         ));
     }
 
@@ -92,7 +92,7 @@ class SubsidioController extends Controller
         }
 
         return $this->render('subsidio/edit.html.twig', array(
-            'subsidio' => $subsidio,
+            'entity' => $subsidio,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

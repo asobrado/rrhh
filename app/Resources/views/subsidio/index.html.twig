@@ -1,39 +1,46 @@
-{% extends 'base.html.twig' %}
+{% extends ':app:list.html.twig' %}
 
-{% block body %}
-    <h1>Subsidios list</h1>
 
-    <table>
+{% block page_breadcrumb %}
+    {{ parent() }}
+    <li>
+        Listado de Subsidios
+    </li>
+{% endblock %}
+
+{% block acciones %}
+    {% embed ':app:list_actions.html.twig' %}
+        {% block links_acciones %}
+            <a href="{{ path('subsidio_new') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo</a>
+
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block listado -%}
+
+    <table class="table table-striped table-bordered table-hover datatable">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
         </thead>
         <tbody>
-        {% for subsidio in subsidios %}
+        {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('subsidio_show', { 'id': subsidio.id }) }}">{{ subsidio.id }}</a></td>
-                <td>{{ subsidio.nombre }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('subsidio_show', { 'id': subsidio.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('subsidio_edit', { 'id': subsidio.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td>{{ entity.nombre }}</td>
+                <td><a href="{{ path('subsidio_edit', {'id': entity.id}) }}"><span class="fa fa-pencil fontsize16"
+                                                                                   style="margin-right:4px;"
+                                                                                   data-toggle="tooltip"
+                                                                                   data-placement="top" title=""
+                                                                                   data-original-title="Editar"></span></a>
+                    <a href="javascript:if(confirm('Esta seguro que desea ELIMINAR la MenuItem {{ entity }}? ALERTA: Esta accion no podra ser deshecha'))window.location='{{ path('subsidio_delete', {'id': entity.id}) }}'"><span
+                                class="fa fa-times-circle fontsize16" style="color:#F00;" data-toggle="tooltip"
+                                data-placement="top" title="Eliminar"></span></a>                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('subsidio_new') }}">Create a new subsidio</a>
-        </li>
-    </ul>
 {% endblock %}

@@ -1,53 +1,60 @@
-{% extends 'base.html.twig' %}
+{% extends ':app:list.html.twig' %}
 
-{% block body %}
-    <h1>Proyectos list</h1>
 
-    <table>
+{% block page_breadcrumb %}
+    {{ parent() }}
+    <li>
+        Listado de Proyectos
+    </li>
+{% endblock %}
+
+{% block acciones %}
+    {% embed ':app:list_actions.html.twig' %}
+        {% block links_acciones %}
+            <a href="{{ path('proyecto_new') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo</a>
+
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block listado -%}
+
+    <table class="table table-striped table-bordered table-hover datatable">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Slug</th>
-                <th>Logo</th>
-                <th>Web</th>
-                <th>Facebook</th>
-                <th>Twitter</th>
-                <th>Youtube</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Slug</th>
+            <th>Logo</th>
+            <th>Web</th>
+            <th>Facebook</th>
+            <th>Twitter</th>
+            <th>Youtube</th>
+            <th>Acciones</th>
+        </tr>
         </thead>
         <tbody>
-        {% for proyecto in proyectos %}
+        {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('proyecto_show', { 'id': proyecto.id }) }}">{{ proyecto.id }}</a></td>
-                <td>{{ proyecto.nombre }}</td>
-                <td>{{ proyecto.descripcion }}</td>
-                <td>{{ proyecto.slug }}</td>
-                <td>{{ proyecto.logo }}</td>
-                <td>{{ proyecto.web }}</td>
-                <td>{{ proyecto.facebook }}</td>
-                <td>{{ proyecto.twitter }}</td>
-                <td>{{ proyecto.youtube }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('proyecto_show', { 'id': proyecto.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('proyecto_edit', { 'id': proyecto.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td>{{ entity.nombre }}</td>
+                <td>{{ entity.descripcion }}</td>
+                <td>{{ entity.slug }}</td>
+                <td>{{ entity.logo }}</td>
+                <td>{{ entity.web }}</td>
+                <td>{{ entity.facebook }}</td>
+                <td>{{ entity.twitter }}</td>
+                <td>{{ entity.youtube }}</td>
+                <td><a href="{{ path('proyecto_edit', {'id': entity.id}) }}"><span class="fa fa-pencil fontsize16"
+                                                                                      style="margin-right:4px;"
+                                                                                      data-toggle="tooltip"
+                                                                                      data-placement="top" title=""
+                                                                                      data-original-title="Editar"></span></a>
+                    <a href="javascript:if(confirm('Esta seguro que desea ELIMINAR la MenuItem {{ entity }}? ALERTA: Esta accion no podra ser deshecha'))window.location='{{ path('proyecto_delete', {'id': entity.id}) }}'"><span
+                                class="fa fa-times-circle fontsize16" style="color:#F00;" data-toggle="tooltip"
+                                data-placement="top" title="Eliminar"></span></a>                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('proyecto_new') }}">Create a new proyecto</a>
-        </li>
-    </ul>
 {% endblock %}
