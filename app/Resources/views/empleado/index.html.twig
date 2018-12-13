@@ -26,8 +26,8 @@
             <th>Telefono</th>
             <th>Apellido</th>
             <th>Fechanacimiento</th>
-            <th>Fecha_ingreso</th>
-            <th>Finretiro</th>
+            <th>Fecha Ingreso</th>
+            <th>Fecha que se fue</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -35,11 +35,11 @@
         {% for entity in entities %}
             <tr>
                 <td>{{ entity.nombre }}</td>
-                <td><a href="{{ path('empleado_show', { 'id': empleado.id }) }}">{{ empleado.telefono }}</a></td>
-                <td>{{ empleado.apellido }}</td>
-                <td>{{ empleado.fechaNacimiento }}</td>
-                <td>{% if empleado.fechaingreso %}{{ empleado.fechaingreso|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if empleado.finRetiro %}{{ empleado.finRetiro|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td><a href="{{ path('empleado_show', { 'id': entity.id }) }}">{{ entity.telefono }}</a></td>
+                <td>{{ entity.apellido }}</td>
+                <td>{% if entity.fechaNacimiento %}{{ entity.fechaNacimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.fechaingreso %}{{ entity.fechaingreso|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.finRetiro %}{{ entity.finRetiro|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td><a href="{{ path('empleado_edit', {'id': entity.id}) }}"><span class="fa fa-pencil fontsize16"
                                                                                    style="margin-right:4px;"
                                                                                    data-toggle="tooltip"

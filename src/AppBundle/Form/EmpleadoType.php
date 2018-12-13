@@ -16,6 +16,9 @@ class EmpleadoType extends AbstractType
         $builder
             ->add('nombre')
             ->add('apellido')
+            ->add('email')
+            ->add('username')
+            ->add('password')
             ->add('telefono')
             ->add('fechaNacimiento')
             ->add('fecha_ingreso')

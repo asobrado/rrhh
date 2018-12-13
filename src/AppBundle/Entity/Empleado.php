@@ -37,7 +37,7 @@ class Empleado extends User
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaNacimiento", type="string", length=10, nullable=true)
+     * @ORM\Column(name="fechaNacimiento", type="datetime", length=10, nullable=true)
      */
     private $fechaNacimiento;
 
@@ -386,5 +386,29 @@ class Empleado extends User
     public function getSubsidios()
     {
         return $this->subsidios;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     *
+     * @return Empleado
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
     }
 }
